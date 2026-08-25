@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RishuGamerZ | Gaming</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#050505;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* ===== BACKGROUND ===== */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    background:#00eaff;
+    filter:blur(180px);
+    opacity:.12;
+    top:-150px;
+    left:-150px;
+    z-index:-2;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:450px;
+    height:450px;
+    background:#ff0055;
+    filter:blur(180px);
+    opacity:.10;
+    right:-150px;
+    bottom:-150px;
+    z-index:-2;
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,5,.82);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    z-index:999;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#00eaff;
+    text-shadow:0 0 15px #00eaff;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#00eaff;
+}
+
+.menu{
+    display:none;
+    font-size:28px;
+    cursor:pointer;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 60px;
+    position:relative;
+}
+
+.hero-content{
+    max-width:900px;
+    animation:heroIn 1.2s ease;
+}
+
+.badge{
+    display:inline-block;
+    padding:9px 18px;
+    border:1px solid #00eaff;
+    border-radius:30px;
+    color:#00eaff;
+    margin-bottom:25px;
+    box-shadow:0 0 20px rgba(0,234,255,.2);
+}
+
+.hero h1{
+    font-size:clamp(48px,10vw,100px);
+    font-weight:900;
+    line-height:1;
+}
+
+.hero h1 span{
+    color:#00eaff;
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 30px #00eaff;
+}
+
+.hero h2{
+    margin-top:20px;
+    font-size:clamp(20px,4vw,32px);
+    color:#ccc;
+}
+
+.hero p{
+    max-width:650px;
+    margin:25px auto;
+    color:#999;
+    line-height:1.7;
+}
+
+.buttons{
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 28px;
+    margin:7px;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:bold;
+    background:#00eaff;
+    color:#050505;
+    transition:.3s;
+    box-shadow:0 0 20px rgba(0,234,255,.25);
+}
+
+.btn:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 35px rgba(0,234,255,.7);
+}
+
+.btn.dark{
+    background:transparent;
+    color:white;
+    border:1px solid #00eaff;
+}
+
+/* ===== SECTIONS ===== */
+
+section{
+    padding:100px 7%;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.title h2{
+    font-size:42px;
+}
+
+.title span{
+    color:#00eaff;
+}
+
+.title p{
+    margin-top:10px;
+    color:#888;
+}
+
+/* ===== STATS ===== */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:900px;
+    margin:auto;
+}
+
+.stat{
+    text-align:center;
+    padding:30px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    transition:.3s;
+}
+
+.stat:hover{
+    transform:translateY(-8px);
+    border-color:#00eaff;
+}
+
+.stat h3{
+    color:#00eaff;
+    font-size:35px;
+}
+
+/* ===== VIDEOS ===== */
+
+.video-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.video{
+    overflow:hidden;
+    border-radius:18px;
+    background:#101010;
+    border:1px solid rgba(255,255,255,.1);
+    transition:.4s;
+}
+
+.video:hover{
+    transform:translateY(-10px);
+    border-color:#00eaff;
+    box-shadow:0 15px 40px rgba(0,234,255,.12);
+}
+
+.thumbnail{
+    height:190px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        linear-gradient(135deg,#061b20,#111,#260611);
+    position:relative;
+}
+
+.play{
+    width:65px;
+    height:65px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#ff003c;
+    font-size:25px;
+    box-shadow:0 0 25px rgba(255,0,60,.6);
+}
+
+.video-info{
+    padding:20px;
+}
+
+.video-info h3{
+    margin-bottom:10px;
+}
+
+.video-info p{
+    color:#888;
+    font-size:14px;
+}
+
+/* ===== GAMES ===== */
+
+.games{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.game{
+    padding:35px 20px;
+    text-align:center;
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+    transition:.3s;
+}
+
+.game:hover{
+    transform:scale(1.05);
+    border-color:#00eaff;
+}
+
+.game .emoji{
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+/* ===== ABOUT ===== */
+
+.about{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+}
+
+.about p{
+    color:#aaa;
+    line-height:1.9;
+    font-size:17px;
+}
+
+/* ===== CTA ===== */
+
+.cta{
+    text-align:center;
+    padding:80px 20px;
+    margin:50px 7%;
+    border-radius:25px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,234,255,.1),
+            rgba(255,0,85,.08)
+        );
+    border:1px solid rgba(0,234,255,.2);
+}
+
+.cta h2{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.cta p{
+    color:#999;
+    margin-bottom:25px;
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+    padding:35px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:#777;
+}
+
+footer span{
+    color:#00eaff;
+}
+
+/* ===== PARTICLES ===== */
+
+.particle{
+    position:fixed;
+    width:3px;
+    height:3px;
+    background:#00eaff;
+    border-radius:50%;
+    pointer-events:none;
+    opacity:.5;
+    z-index:-1;
+    animation:floatParticle linear infinite;
+}
+
+/* ===== SCROLL ANIMATION ===== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes heroIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes floatParticle{
+    from{
+        transform:translateY(100vh);
+    }
+
+    to{
+        transform:translateY(-100vh);
+    }
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:800px){
+
+    .menu{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:70px;
+        right:-100%;
+        width:100%;
+        padding:30px;
+        flex-direction:column;
+        text-align:center;
+        background:#050505;
+        transition:.4s;
+    }
+
+    .nav-links.active{
+        right:0;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .video-grid{
+        grid-template-columns:1fr;
+    }
+
+    .games{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    section{
+        padding:80px 6%;
+    }
+
+    .cta{
+        margin:30px 6%;
+    }
+}
+
+@media(max-width:450px){
+
+    .games{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:52px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+
+<nav>
+
+    <div class="logo">
+        Rishu<span>GamerZ</span>
+    </div>
+
+    <div class="menu" onclick="menuToggle()">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="navLinks">
+
+        <li><a href="#home">Home</a></li>
+        <li><a href="#videos">Videos</a></li>
+        <li><a href="#games">Games</a></li>
+        <li><a href="#about">About</a></li>
+
+    </ul>
+
+</nav>
+
+
+<!-- ===== HERO ===== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            🎮 OFFICIAL GAMING WEBSITE
+        </div>
+
+        <h1>
+            Rishu<span>GamerZ</span>
+        </h1>
+
+        <h2>
+            Gaming • Entertainment • Fun
+        </h2>
+
+        <p>
+            Welcome to RishuGamerZ!  
+            Gaming videos, epic moments, funny gameplay
+            and much more.
+        </p>
+
+        <div class="buttons">
+
+            <a
+                class="btn"
+                href="https://www.youtube.com/@rishugamerzi"
+                target="_blank"
+            >
+                ▶ Watch YouTube
+            </a>
+
+            <a
+                class="btn dark"
+                href="#videos"
+            >
+                Explore Website
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== STATS ===== -->
+
+<section class="reveal">
+
+    <div class="stats">
+
+        <div class="stat">
+            <h3>🎮</h3>
+            <p>Gaming</p>
+        </div>
+
+        <div class="stat">
+            <h3>🔥</h3>
+            <p>Entertainment</p>
+        </div>
+
+        <div class="stat">
+            <h3>⚡</h3>
+            <p>Daily Fun</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== VIDEOS ===== -->
+
+<section id="videos" class="reveal">
+
+    <div class="title">
+
+        <h2>
+            Latest <span>Videos</span>
+        </h2>
+
+        <p>
+            Watch the latest gaming content
+        </p>
+
+    </div>
+
+
+    <div class="video-grid">
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <div class="play">▶</div>
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Epic Gaming Moment 🔥
+                </h3>
+
+                <p>
+                    Watch on YouTube
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <div class="play">▶</div>
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Insane Gameplay 🎮
+                </h3>
+
+                <p>
+                    Watch on YouTube
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="video">
+
+            <div class="thumbnail">
+                <div class="play">▶</div>
+            </div>
+
+            <div class="video-info">
+
+                <h3>
+                    Best Gaming Moments ⚡
+                </h3>
+
+                <p>
+                    Watch on YouTube
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div style="text-align:center;margin-top:40px;">
+
+        <a
+            class="btn"
+            href="https://www.youtube.com/@rishugamerzi"
+            target="_blank"
+        >
+            View All Videos
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ===== GAMES ===== -->
+
+<section id="games" class="reveal">
+
+    <div class="title">
+
+        <h2>
+            My <span>Games</span>
+        </h2>
+
+        <p>
+            Games you may see on the channel
+        </p>
+
+    </div>
+
+
+    <div class="games">
+
+        <div class="game">
+            <div class="emoji">🔫</div>
+            <h3>Free Fire</h3>
+        </div>
+
+        <div class="game">
+            <div class="emoji">🚗</div>
+            <h3>GTA</h3>
+        </div>
+
+        <div class="game">
+            <div class="emoji">⚔️</div>
+            <h3>Action Games</h3>
+        </div>
+
+        <div class="game">
+            <div class="emoji">🎮</div>
+            <h3>More Games</h3>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== ABOUT ===== -->
+
+<section id="about" class="reveal">
+
+    <div class="title">
+
+        <h2>
+            About <span>RishuGamerZ</span>
+        </h2>
+
+    </div>
+
+
+    <div class="about">
+
+        <p>
+
+            Welcome to the official RishuGamerZ website!
+
+            This is a gaming-focused channel where you can
+            enjoy gameplay, funny moments, exciting matches
+            and entertaining gaming content.
+
+            <br><br>
+
+            Subscribe to the channel and become a part of
+            the RishuGamerZ gaming community. ❤️🎮
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ===== SUBSCRIBE CTA ===== -->
+
+<div class="cta reveal">
+
+    <h2>
+        Ready to <span style="color:#00eaff">
+        Game?
+        </span>
+    </h2>
+
+    <p>
+        Join the RishuGamerZ gaming community!
+    </p>
+
+    <a
+        class="btn"
+        href="https://www.youtube.com/@rishugamerzi?sub_confirmation=1"
+        target="_blank"
+    >
+        🔔 Subscribe Now
+    </a>
+
+</div>
+
+
+<!-- ===== FOOTER ===== -->
+
+<footer>
+
+    © 2026
+    <span>RishuGamerZ</span>
+    • All Rights Reserved.
+
+    <br><br>
+
+    🎮 Keep Gaming • Keep Winning 🎮
+
+</footer>
+
+
+<script>
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function menuToggle(){
+
+    document
+    .getElementById("navLinks")
+    .classList
+    .toggle("active");
+
+}
+
+
+/* =========================
+   CLOSE MENU AFTER CLICK
+========================= */
+
+document
+.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        document
+        .getElementById("navLinks")
+        .classList
+        .remove("active");
+
+    });
+
+});
+
+
+/* =========================
+   SCROLL ANIMATION
+========================= */
+
+const elements =
+document.querySelectorAll(".reveal");
+
+
+function reveal(){
+
+    elements.forEach(element => {
+
+        const position =
+        element.getBoundingClientRect().top;
+
+        if(position <
+        window.innerHeight - 100){
+
+            element.classList.add("show");
+
+        }
+
+    });
+
+}
+
+
+window.addEventListener(
+    "scroll",
+    reveal
+);
+
+reveal();
+
+
+/* =========================
+   PARTICLES
+========================= */
+
+for(let i = 0; i < 50; i++){
+
+    const particle =
+    document.createElement("div");
+
+    particle.className =
+    "particle";
+
+    particle.style.left =
+    Math.random() * 100 + "%";
+
+    particle.style.animationDuration =
+    (5 + Math.random() * 12) + "s";
+
+    particle.style.animationDelay =
+    Math.random() * 8 + "s";
+
+    document.body.appendChild(
+        particle
+    );
+
+}
+
+</script>
+
+</body>
+      </html>
